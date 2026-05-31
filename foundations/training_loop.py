@@ -17,8 +17,8 @@ class Solution:
         
         n_samples = X.shape[0]
         n_features = X.shape[1]
-        # y = y.reshape(-1, 1)
-        w = np.zeros((n_features, ))
+        y = y.reshape(-1, 1)
+        w = np.zeros((n_features, 1))
         b = 0.0
 
         for _ in range(epochs):
@@ -27,5 +27,7 @@ class Solution:
             l_b = 2 * np.mean(y_hat-y)
             w -= lr*l_w
             b -= lr*l_b
+        
+        w = np.squeeze(w, axis=1)
 
         return (np.round(w, 5), round(b, 5))
